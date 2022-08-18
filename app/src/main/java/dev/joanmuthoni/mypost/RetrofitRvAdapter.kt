@@ -1,6 +1,7 @@
 package dev.joanmuthoni.mypost
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +19,17 @@ class RetrofitRvAdapter(var context:Context, var postList: List<Post>)
     override fun onBindViewHolder(holder: RetrofitViewHolder, position: Int) {
         var currentItem = postList.get(position)
 
+
         with(holder.bindingView){
-        tvuserid.text = currentItem.userId.toString()
-        tvid.text = currentItem.id.toString()
-        tvtitle.text = currentItem.title
-        tvbody.text= currentItem.body
+            tvuserid.text = currentItem.userId.toString()
+            tvid.text = currentItem.id.toString()
+            tvtitle.text = currentItem.title
+            tvbody.text= currentItem.body
+            cvPosts.setOnClickListener{
+                var intent = Intent(context, CommentActivity::class.java)
+                intent.putExtra("POST_ID", currentItem.id)
+                context.startActivity(intent)
+            }
         }
     }
 

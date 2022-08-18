@@ -12,4 +12,31 @@ object APIClient {
         return retrofit.create(apiInterface)
     }
 }
+//fun main(){
+//
+//}
+//interface  Television {
+//    fun switchOn()
+//    fun switchOff()
+//    fun adjustVolume(Level: Int)
+//    fun switchChannel()
+//}
+//class Sony:Television{
+//    override fun switchOn() {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun switchOff() {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun adjustVolume(Level: Int) {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun switchChannel() {
+//        TODO("Not yet implemented")
+//    }
+//}
+//class
 

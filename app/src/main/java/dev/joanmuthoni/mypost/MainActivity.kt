@@ -37,4 +37,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 }
+//fun displayPost(post)
+//binding.postA
 
