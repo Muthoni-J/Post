@@ -12,8 +12,8 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        super.onCreate(savedInstanceState)
         setContentView(binding.root)
         getPosts()
     }
@@ -24,19 +24,26 @@ class MainActivity : AppCompatActivity() {
         request.enqueue(object: Callback<List<Post>>{
             override fun onResponse(call: Call<List<Post>>, response:  Response<List<Post>>) {
                 if (response.isSuccessful){
-                    val post = response.body()!!
-                    var adapter = RetrofitRvAdapter(baseContext, post)
-                    binding.rvretrofit.adapter = adapter
-                    binding.rvretrofit.layoutManager = LinearLayoutManager(baseContext)
-                    Toast.makeText(baseContext, "fetched ${post.size} posts",
-                        Toast. LENGTH_LONG).show()
+                    val post = response.body()
+                    if (post !=null){
+                        displayPost(post)
+                    }
+
                 }
             }
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                Toast.makeText(baseContext, t.message,Toast. LENGTH_LONG).show()
             }
         })
     }
+    fun displayPost(postList: List<Post>){
+        var adapter = RetrofitRvAdapter(postList)
+        binding.rvretrofit.layoutManager=LinearLayoutManager(this)
+        binding.rvretrofit.adapter=adapter
+
+    }
 }
-//fun displayPost(post)
-//binding.postA
+
+
+
 

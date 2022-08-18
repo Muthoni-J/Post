@@ -8,35 +8,34 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.joanmuthoni.mypost.databinding.CommentslistBinding
 import dev.joanmuthoni.mypost.databinding.RetrofitPostItemBinding
 
-class CommentsRvAdapter(var commentslist: Context, var commentstlist: List<Post>)
+class CommentsRvAdapter(var commentslist:List<Comment>)
     : RecyclerView.Adapter<CommentsViewHolder> (){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentsViewHolder {
-        var bindingView = CommentslistBinding
-            .inflate(LayoutInflater.from(context),parent,false)
-        return  CommentsViewHolder(bindingView)
+        var binding = CommentslistBinding
+            .inflate(LayoutInflater.from(parent.context),parent,false)
+        return  CommentsViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CommentsViewHolder, position: Int) {
-        var currentItem = commentsList.get(position)
-        with(holder.binding){
-            holder.binding.tvid.text=currentItem.id
-            holder.bindingView.
-            tvId.text = currentItem.userId.toString()
-            tvid.text = currentItem.id.toString()
-            tvemail.text = currentItem.email
-            tv.text= currentItem.body
-            cvPosts.setOnClickListener{
-                var intent = Intent(context, CommentActivity::class.java)
-                intent.putExtra("POST_ID", currentItem.id)
-                context.startActivity(intent)
+        var currentcomments = commentslist.get(position)
+        with(holder.bindingView){
+            holder.bindingView.tvPostId.text=currentcomments.postId.toString()
+            holder.bindingView.tvId.text=currentcomments.postId.toString()
+            holder.bindingView.tvname.text=currentcomments.name
+            holder.bindingView.tvemail.text=currentcomments.email
+            holder.bindingView.tvbody2.text=currentcomments.body
+
+
+
             }
         }
-    }
+
 
     override fun getItemCount(): Int {
-        return  commmentslist.size
+        return  commentslist.size
     }
 }
 
-class CommentsViewHolder(var bindingView: CommentsItemBinding):
-    RecyclerView.ViewHolder(bindingView.root)
+class CommentsViewHolder(var bindingView: CommentslistBinding ):
+    RecyclerView.ViewHolder(bindingView.root){
+    }

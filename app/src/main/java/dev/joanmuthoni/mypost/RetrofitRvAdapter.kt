@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.joanmuthoni.mypost.databinding.RetrofitPostItemBinding
 import kotlin.coroutines.CoroutineContext
 
-class RetrofitRvAdapter(var context:Context, var postList: List<Post>)
+class RetrofitRvAdapter( var postList: List<Post>)
     : RecyclerView.Adapter<RetrofitViewHolder> (){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RetrofitViewHolder {
        var bindingView = RetrofitPostItemBinding
-           .inflate(LayoutInflater.from(context),parent,false)
+           .inflate(LayoutInflater.from(parent.context),parent,false)
         return  RetrofitViewHolder(bindingView)
     }
 
@@ -25,6 +25,7 @@ class RetrofitRvAdapter(var context:Context, var postList: List<Post>)
             tvid.text = currentItem.id.toString()
             tvtitle.text = currentItem.title
             tvbody.text= currentItem.body
+            var context =holder.itemView.context
             cvPosts.setOnClickListener{
                 var intent = Intent(context, CommentActivity::class.java)
                 intent.putExtra("POST_ID", currentItem.id)
